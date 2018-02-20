@@ -19,6 +19,11 @@ func intopost(infix string) string {
 	//Stack which stores ooperators from the infix regular expression
 	s := []rune{}
 
+	//Loop over the input
+	for _, r := range infix {
+
+	}
+
 	return string(postfix)
 } //End of intopost function
 
