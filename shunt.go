@@ -38,7 +38,7 @@ func intopost(infix string) string {
 			s = s[:len(s)-1]
 		//Current character that reads from infix is a special character
 		case specials[r] > 0:
-			//while stack still hasan element on it and the precedence of the current character that reaads is less or = the precedence of the top element of the stcak
+			//while stack still has an element on it and the precedence of the current character that reaads is less or = the precedence of the top element of the stcak
 			for len(s) > 0 && specials[r] <= specials[s[len(s)-1]] {
 				//Takes of the stack and stick into pofix
 				pofix, s = append(pofix, s[len(s)-1]), s[:len(s)-1]
@@ -51,7 +51,7 @@ func intopost(infix string) string {
 			pofix = append(pofix, r)
 		}
 	}
-	//If enythin on the stack append to the output
+	//If enything on the stack append to the output
 	for len(s) > 0 {
 		pofix, s = append(pofix, s[len(s)-1]), s[:len(s)-1]
 	}
