@@ -165,5 +165,5 @@ func main() {
 	fmt.Println(pomatch("ab.c*|", "abc"))
 	fmt.Println(pomatch("ab.c*|", ""))
 	fmt.Println(pomatch("ab.c*|", "c"))
-	fmt.Println(pomatch("ab.c*|", "ccccccc"))
+	fmt.Println(pomatch("ab.c*|", "cccccc"))
 }
