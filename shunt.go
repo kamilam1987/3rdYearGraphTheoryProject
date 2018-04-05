@@ -126,4 +126,20 @@ func main() {
 	fmt.Println("Infix:  ", "a.(b.b)+.c")
 	fmt.Println("Postfix: ", intopost("a.(b.b)+.c"))
 
+	// Answer: cad+*
+	fmt.Println("Infix: ", "c*(a+d)")
+	fmt.Println("Postfix: ", intopostMathsExp("c*(a+d)"))
+
+	//Answer: bad-+
+	fmt.Println("Infix: ", "b+(a-d)")
+	fmt.Println("Postfix: ", intopostMathsExp("b+(a-d)"))
+
+	//Answer:  bcb*/c+
+	fmt.Println("Infix: ", "b/(c*b)+c")
+	fmt.Println("Postfix: ", intopostMathsExp("b/(c*b)+c"))
+
+	//Answer:  cbad+/
+	fmt.Println("Infix: ", "c/b(a+d)")
+	fmt.Println("Postfix: ", intopostMathsExp("c/b(a+d)"))
+
 } //End of main function
