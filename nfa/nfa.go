@@ -5,7 +5,10 @@
 package nfa
 
 import (
+	"bufio"
 	"fmt"
+	"os"
+	"strings"
 )
 
 //Create state struct
@@ -159,6 +162,17 @@ func Pomatch(po string, s string) bool {
 	//Returns bool back
 	return ismatch
 } //End of pomatch
+
+//Reads user input
+//Reference: https://medium.com/@matryer/golang-advent-calendar-day-seventeen-io-reader-in-depth-6f744bb4320b
+func UserInput() (string, error) {
+	//read
+	reader := bufio.NewReader(os.Stdin)
+	s, err := reader.ReadString('\n')
+	//Reference: https://golang.org/pkg/strings/#example_TrimSpace
+	return strings.TrimSpace(s), err //TrimSpace returns a slice of the string s, with all leading and trailing white space removed, as defined by Unicode.
+}
+
 /*
 func main() {
 	fmt.Println(Pomatch("ab.c*|", "cccc"))
