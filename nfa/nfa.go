@@ -2,7 +2,7 @@
 //Source code adapted from: https://web.microsoftstream.com/video/68a288f5-4688-4b3a-980e-1fcd5dd2a53b
 //Thompson's construction
 
-package main
+package nfa
 
 import (
 	"fmt"
@@ -24,7 +24,7 @@ type nfa struct {
 }
 
 //Function Postfix Regular Expression to NFA, takes string as input and has to return pointer to nfa
-func poregtonfa(pofix string) *nfa {
+func Poregtonfa(pofix string) *nfa {
 	//Array of pointers to nfa's {}-one of those that are empty
 	nfastatck := []*nfa{}
 
@@ -107,39 +107,39 @@ func main() {
 } //End of main
 */
 //Function addState take list of pointers to states, takes pointer to the state and accept state and return back list of pointers
-func addState(l []*state, s *state, a *state) []*state {
+func AddState(l []*state, s *state, a *state) []*state {
 	l = append(l, s)
 
 	//Not in the accept state
 	if s != a && s.symbol == 0 { //O value of rune
-		l = addState(l, s.edge1, a) // Follow the first edge
+		l = AddState(l, s.edge1, a) // Follow the first edge
 		if s.edge2 != nil {         //Check if there is a second edge
-			l = addState(l, s.edge2, a)
+			l = AddState(l, s.edge2, a)
 		}
 	}
 	return l
 } //End of addState function
 
 //Function pomatch checks if pofix regular expresion  matches the strings
-func pomatch(po string, s string) bool {
+func Pomatch(po string, s string) bool {
 	//Set to default
 	ismatch := false //Starts with default position
 	//Runs the strings against regular expresion, checks if match
-	ponfa := poregtonfa(po) //Create nondeterministic finite automata from the regular expression
+	ponfa := Poregtonfa(po) //Create nondeterministic finite automata from the regular expression
 
 	//Keep track of the set of states
 	current := []*state{} //Current set of state
 	next := []*state{}    //Next set of state
 
 	//Create function addState, passes current to it and passes state ponfa.initial
-	current = addState(current[:], ponfa.initial, ponfa.accept)
+	current = AddState(current[:], ponfa.initial, ponfa.accept)
 
 	//Loop through the string(s), rad character at the time
 	for _, r := range s {
 		//Every time read character loop through a current array, take all the current state
 		for _, c := range current {
 			if c.symbol == r { //Check if they are labeled by character that was read from s
-				next = addState(next[:], c.edge1, ponfa.accept) // If has a symbol r, follow that to the next state
+				next = AddState(next[:], c.edge1, ponfa.accept) // If has a symbol r, follow that to the next state
 			}
 
 		} //End of for loop
@@ -159,11 +159,11 @@ func pomatch(po string, s string) bool {
 	//Returns bool back
 	return ismatch
 } //End of pomatch
-
+/*
 func main() {
-	fmt.Println(pomatch("ab.c*|", "cccc"))
-	fmt.Println(pomatch("ab.c*|", "abc"))
-	fmt.Println(pomatch("ab.c*|", ""))
-	fmt.Println(pomatch("ab.c*|", "c"))
-	fmt.Println(pomatch("ab.c*|", "cccccc"))
-}
+	fmt.Println(Pomatch("ab.c*|", "cccc"))
+	fmt.Println(Pomatch("ab.c*|", "abc"))
+	fmt.Println(Pomatch("ab.c*|", ""))
+	fmt.Println(Pomatch("ab.c*|", "c"))
+	fmt.Println(Pomatch("ab.c*|", "cccccc"))
+}*/

@@ -1,15 +1,10 @@
 //Author: Kamila Michel
 //source code adapted from: https://web.microsoftstream.com/video/9d83a3f3-bc4f-4bda-95cc-b21c8e67675e
 
-package main
-
-//imports
-import (
-	"fmt"
-)
+package shunt
 
 //Function intopost which convert regular expression to postfix regular expression,takes single argument as a string and returns string
-func intopost(infix string) string {
+func Intopost(infix string) string {
 	//Created map with special characters into integares, keep track special characters that are allwed other then bracets
 	specials := map[rune]int{'*': 10, '.': 9, '|': 8}
 
@@ -58,9 +53,9 @@ func intopost(infix string) string {
 	return string(pofix)
 } //End of intopost function
 
-//Reference:https://rosettacode.org/wiki/Parsing/Shunting-yard_algorithm
+//Reference: https://rosettacode.org/wiki/Parsing/Shunting-yard_algorithm
 //Function intopost which convert Maths expression to postfix regular expression,takes single argument as a string and returns string
-func intopostMathsExp(infix string) string {
+func IntopostMathsExp(infix string) string {
 	//Created map with special characters into integares, keep track special characters that are allwed other then bracets
 	specials := map[rune]int{'^': 4, '*': 3, '/': 3, '+': 2, '-': 2}
 
@@ -108,6 +103,8 @@ func intopostMathsExp(infix string) string {
 	}
 	return string(pofix)
 } //End of intopost function
+
+/*
 //Main function contains regular expression written in infix notation
 func main() {
 	//Answer: ab.c*.
@@ -134,7 +131,7 @@ func main() {
 	fmt.Println("Infix: ", "b+(a-d)")
 	fmt.Println("Postfix: ", intopostMathsExp("b+(a-d)"))
 
-	//Answer:  bcb*/c+
+	//Answer:  bcbc+
 	fmt.Println("Infix: ", "b/(c*b)+c")
 	fmt.Println("Postfix: ", intopostMathsExp("b/(c*b)+c"))
 
@@ -143,3 +140,4 @@ func main() {
 	fmt.Println("Postfix: ", intopostMathsExp("c/b(a+d)"))
 
 } //End of main function
+*/
