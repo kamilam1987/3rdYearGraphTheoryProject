@@ -93,6 +93,21 @@ func Poregtonfa(pofix string) *nfa {
 			frag.accept.edge2 = &accept
 			//Push a new fragment to nfa statck
 			nfastatck = append(nfastatck, &nfa{initial: &initial, accept: &accept})
+		case '+':
+			//One or more:  Pop one thing off nfa stack
+			frag := nfastatck[len(nfastatck)-1]
+			//To get rid of last think of the stack(up to but not including)
+			nfastatck = nfastatck[:len(nfastatck)-1]
+
+			//New accept state
+			accept := state{}
+			//New initial state which has edge 1(initial state of the pop off fragment) and edge 2(point at the new accept state)
+			initial := state{edge1: frag.initial, edge2: &accept}
+
+			//Joining old fragment to the accept state
+			frag.accept.edge1 = &initial
+			//Push a new fragment to nfa statck
+			nfastatck = append(nfastatck, &nfa{initial: frag.initial, accept: &accept})
 
 		default:
 			//Push to the statck
